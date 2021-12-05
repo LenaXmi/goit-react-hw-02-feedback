@@ -1,0 +1,13 @@
+.OptionBtn:not(:last-child){
+    margin-right: 15px;
+    
+}
+
+.OptionBtn{
+    cursor: pointer;
+}
+
+.Notification{
+    font-weight: bold;
+    color: rgb(199, 27, 27);
+}
