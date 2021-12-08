@@ -16,24 +16,12 @@ class Feedback extends Component {
     neutral: this.props.neutral,
     bad: this.props.bad,
   };
-
-  onGoodClick = () => {
+  onOptionClick = (option) => {
     this.setState((prevState) => ({
-      good: prevState.good + 1,
+      [option]: prevState[option] + 1,
     }));
   };
 
-  onNeutralClick = () => {
-    this.setState((prevState) => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  onBadClick = () => {
-    this.setState((prevState) => ({
-      bad: prevState.bad + 1,
-    }));
-  };
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     const total = good + neutral + bad;
@@ -50,13 +38,14 @@ class Feedback extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
+    const keysArr = Object.keys(this.state);
+
     return (
       <div>
         <Section title={"Please leave feedback"}>
           <FeedbackOptions
-            onGoodClick={this.onGoodClick}
-            onNeutralClick={this.onNeutralClick}
-            onBadClick={this.onBadClick}
+            options={keysArr}
+            onLeaveFeedback={this.onOptionClick}
           />
         </Section>
         {this.countTotalFeedback() > 0 ? (
